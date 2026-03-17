@@ -1,145 +1,174 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>My Dev Blog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dev Blog</title>
 
-    <style>
-        /* 전체 배경 (우주 느낌) */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: radial-gradient(circle at top, #1a0b2e, #0a0a23, #000);
-            color: #e0e0ff;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #1a0b2e, #0a0a23, #000);
+    color: #e0e0ff;
+    overflow-x: hidden;
+}
 
-        /* 별 효과 */
-        body::before {
-            content: "";
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: url("https://www.transparenttextures.com/patterns/stardust.png");
-            opacity: 0.3;
-            z-index: -1;
-        }
+/* 별 애니메이션 */
+.stars, .stars::after {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    animation: twinkle 5s infinite linear;
+    opacity: 0.5;
+    z-index: -2;
+}
 
-        /* 레이아웃 */
-        .container {
-            display: flex;
-            height: 100vh;
-        }
+@keyframes twinkle {
+    from {opacity: 0.3;}
+    to {opacity: 0.7;}
+}
 
-        /* 사이드바 (프로필) */
-        .sidebar {
-            width: 280px;
-            background: rgba(10, 10, 35, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            box-shadow: 2px 0 20px rgba(0,0,0,0.5);
-        }
+/* 유성 */
+.shooting-star {
+    position: fixed;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(white, transparent);
+    top: -100px;
+    left: 50%;
+    animation: shoot 5s infinite ease-in;
+    z-index: -1;
+}
 
-        .profile {
-            text-align: center;
-        }
+@keyframes shoot {
+    0% {transform: translate(0,0) rotate(45deg); opacity:1;}
+    100% {transform: translate(-500px,800px) rotate(45deg); opacity:0;}
+}
 
-        .profile img {
-            width: 100px;
-            border-radius: 50%;
-            margin-bottom: 15px;
-        }
+/* 상단 메뉴바 */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(10,10,35,0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 10;
+}
 
-        .profile h2 {
-            margin: 10px 0 5px;
-            color: #caa6ff;
-        }
+.navbar .menu a {
+    margin-right: 20px;
+    color: #caa6ff;
+    text-decoration: none;
+}
 
-        .profile p {
-            font-size: 14px;
-            color: #aaa;
-        }
+.navbar .stats {
+    font-size: 14px;
+    color: #aaa;
+}
 
-        /* 메인 콘텐츠 */
-        .main {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-        }
+.container {
+    display: flex;
+    margin-top: 60px;
+}
 
-        .title {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #d0b3ff;
-        }
+.sidebar {
+    width: 260px;
+    padding: 20px;
+}
 
-        /* 게시글 카드 */
-        .post {
-            background: rgba(20, 20, 60, 0.6);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: 0.3s;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+.profile-box {
+    margin-top: 150px;
+    background: rgba(20,20,60,0.7);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+}
 
-        .post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(100, 50, 255, 0.3);
-        }
+.profile-box img {
+    width: 80px;
+    border-radius: 50%;
+}
 
-        .post h3 {
-            margin: 0;
-            color: #ffffff;
-        }
+.main {
+    flex: 1;
+    padding: 30px;
+}
 
-        .post p {
-            font-size: 14px;
-            color: #bbb;
-        }
+.post {
+    background: rgba(20,20,60,0.6);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
 
-        .post span {
-            font-size: 12px;
-            color: #888;
-        }
-    </style>
+.post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(100,50,255,0.3);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .profile-box {
+        margin-top: 50px;
+    }
+}
+</style>
 </head>
 
 <body>
 
+<div class="stars"></div>
+<div class="shooting-star"></div>
+
+<div class="navbar">
+    <div class="menu">
+        <a href="#">Home</a>
+        <a href="#">Posts</a>
+        <a href="#">About</a>
+    </div>
+    <div class="stats">
+        게시글 10개 | 방문자 1234명
+    </div>
+</div>
+
 <div class="container">
 
-    <!-- 사이드바 -->
     <div class="sidebar">
-        <div class="profile">
-            <img src="https://via.placeholder.com/100" alt="profile">
-            <h2>정수</h2>
-            <p>백엔드 개발자 🚀</p>
-            <p>Java | Spring | AWS</p>
+        <div class="profile-box">
+            <img src="https://via.placeholder.com/80">
+            <h3>정수</h3>
+            <p>백엔드 개발자</p>
         </div>
     </div>
 
-    <!-- 메인 콘텐츠 -->
     <div class="main">
-        <div class="title">🌌 Dev Log</div>
-
         <div class="post">
-            <h3>JDBC에서 Connection 관리 제대로 하기</h3>
-            <p>Connection을 닫지 않으면 어떤 문제가 발생하는지와 해결 방법을 정리했습니다.</p>
-            <span>2026.03.17</span>
+            <h3>JDBC Connection 관리</h3>
+            <p>Connection 관리 방법 정리</p>
         </div>
 
         <div class="post">
-            <h3>MVC 패턴 제대로 이해하기</h3>
-            <p>Controller, Service, DAO 역할을 실전 코드 기준으로 정리했습니다.</p>
-            <span>2026.03.15</span>
+            <h3>MVC 패턴 이해</h3>
+            <p>구조와 흐름 정리</p>
         </div>
-
-        <div class="post">
-            <h3>MySQL 인덱스 최적화 경험</h3>
-            <p>조회 속도를 3배 개선했던 인덱스 적용 사례를 공유합니다.</p>
-            <span>2026.03.10</span>
-        </div>
-
     </div>
 
 </div>
