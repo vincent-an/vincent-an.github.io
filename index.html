@@ -3,174 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dev Blog</title>
+<title>California Dev Blog</title>
 
 <style>
 * { box-sizing: border-box; }
 
 body {
     margin: 0;
-    font-family: 'Pretendard', 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #1a0b2e, #0a0a23 60%, #000);
-    color: #eaeaff;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #87CEEB, #fdf6e3);
+    color: #333;
 }
 
-/* 별 배경 */
-.stars {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png');
-    animation: twinkle 8s infinite linear;
-    opacity: 0.35;
-    z-index: -1;
-}
-
-@keyframes twinkle {
-    0%,100% {opacity: 0.3;}
-    50% {opacity: 0.6;}
-}
-
-/* 네비게이션 */
+/* 상단 네비 */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 64px;
-    background: rgba(10,10,35,0.9);
-    backdrop-filter: blur(12px);
+    height: 60px;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 32px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 0 30px;
+    border-bottom: 1px solid #eee;
     z-index: 10;
 }
 
 .menu a {
-    margin-right: 24px;
+    margin-right: 20px;
     text-decoration: none;
-    color: #caa6ff;
-    font-weight: 500;
-    transition: 0.2s;
+    color: #ff6b6b;
+    font-weight: bold;
 }
 
 .menu a:hover {
-    color: #fff;
+    color: #ff3b3b;
 }
 
 .stats {
-    font-size: 13px;
-    color: #aaa;
+    font-size: 14px;
+    color: #555;
 }
 
+/* 메인 컨테이너 */
 .container {
     display: flex;
-    margin-top: 64px;
-    height: calc(100vh - 64px);
+    margin-top: 60px;
+    padding: 20px;
 }
 
-/* 좌측 */
+/* 좌측 프로필 */
 .sidebar {
-    width: 320px;
-    padding: 28px;
+    width: 300px;
 }
 
-.profile-container {
-    background: linear-gradient(145deg, rgba(30,20,80,0.6), rgba(20,20,60,0.6));
-    border-radius: 18px;
-    padding: 24px;
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-}
-
-.profile-header {
+.profile {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
-    margin-bottom: 20px;
 }
 
-.profile-header img {
-    width: 90px;
+.profile img {
+    width: 100px;
     border-radius: 50%;
-    margin-bottom: 10px;
 }
 
-.profile-header h2 {
-    margin: 6px 0;
-    color: white;
+.profile h2 {
+    margin: 10px 0 5px;
 }
 
-.profile-header p {
-    margin: 0;
-    color: #aaa;
-    font-size: 14px;
+.profile p {
+    margin: 5px 0;
+    color: #666;
 }
 
-.section-box {
-    background: rgba(255,255,255,0.04);
-    border-radius: 12px;
-    padding: 14px;
-    margin-top: 14px;
-    border: 1px solid rgba(255,255,255,0.05);
+.section {
+    margin-top: 15px;
+    background: #fff5f5;
+    padding: 10px;
+    border-radius: 10px;
 }
 
-.section-box h4 {
-    margin: 0 0 6px;
-    font-size: 13px;
-    color: #caa6ff;
-}
-
-.section-box p {
-    margin: 0;
-    font-size: 13px;
-    color: #bbb;
+.section h4 {
+    margin: 0 0 5px;
+    color: #ff6b6b;
 }
 
 /* 게시글 */
 .main {
     flex: 1;
-    padding: 28px;
-    overflow-y: auto;
+    margin-left: 20px;
 }
 
-.posts-container {
-    background: rgba(20,20,50,0.55);
-    padding: 24px;
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,0.06);
+.posts {
+    display: flex;
+    flex-direction: column;
 }
 
 .post {
+    background: white;
+    border-radius: 20px;
     padding: 20px;
-    border-radius: 14px;
-    margin-bottom: 18px;
-    background: linear-gradient(145deg, rgba(40,30,90,0.5), rgba(20,20,60,0.5));
-    border: 1px solid rgba(255,255,255,0.06);
-    transition: all 0.25s ease;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: 0.2s;
 }
 
 .post:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(120,80,255,0.25);
-    border: 1px solid rgba(180,140,255,0.3);
+    transform: translateY(-5px);
 }
 
 .post h3 {
     margin: 0;
-    color: #ffffff;
-    font-size: 18px;
+    color: #333;
 }
 
 .post p {
-    margin: 8px 0 0;
-    color: #ffffff;
-    font-size: 14px;
-    opacity: 0.85;
+    margin: 8px 0;
+    color: #666;
 }
 
 .post span {
     font-size: 12px;
-    color: #aaa;
+    color: #999;
 }
 
 /* 페이징 */
@@ -182,22 +141,14 @@ body {
 
 .page-btn {
     padding: 8px 12px;
-    margin: 0 4px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.05);
-    color: #ccc;
+    margin: 0 5px;
+    border-radius: 10px;
+    background: #ffe0e0;
     cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: 0.2s;
-}
-
-.page-btn:hover {
-    background: rgba(150,100,255,0.2);
-    color: #fff;
 }
 
 .page-btn.active {
-    background: #7c5cff;
+    background: #ff6b6b;
     color: white;
 }
 
@@ -206,16 +157,16 @@ body {
     .container {
         flex-direction: column;
     }
-    .sidebar {
-        width: 100%;
+
+    .main {
+        margin-left: 0;
+        margin-top: 20px;
     }
 }
 </style>
 </head>
 
 <body>
-
-<div class="stars"></div>
 
 <div class="navbar">
     <div class="menu">
@@ -230,74 +181,71 @@ body {
 
 <div class="container">
 
-<div class="sidebar">
-    <div class="profile-container">
-        <div class="profile-header">
-            <img src="https://via.placeholder.com/90">
+    <div class="sidebar">
+        <div class="profile">
+            <img src="https://via.placeholder.com/100">
             <h2>정수</h2>
             <p>Backend Developer</p>
-            <p style="font-size:13px; color:#888;">기록하고 성장하는 개발자 블로그</p>
-        </div>
+            <p>캘리포니아 감성 개발 블로그 ☀️</p>
 
-        <div class="section-box">
-            <h4>전문 분야</h4>
-            <p>Java, Spring, MySQL, AWS</p>
-        </div>
+            <div class="section">
+                <h4>전문 분야</h4>
+                <p>Java, Spring, MySQL</p>
+            </div>
 
-        <div class="section-box">
-            <h4>운영 방향</h4>
-            <p>실무 중심 문제 해결 및 경험 공유</p>
-        </div>
+            <div class="section">
+                <h4>운영 방향</h4>
+                <p>실무 경험 공유</p>
+            </div>
 
-        <div class="section-box">
-            <h4>키워드</h4>
-            <p>#백엔드 #트러블슈팅 #성장기록</p>
+            <div class="section">
+                <h4>키워드</h4>
+                <p>#백엔드 #성장 #개발</p>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="main">
-    <div class="posts-container">
+    <div class="main">
+        <div class="posts">
 
-        <div class="post">
-            <h3>MVC 패턴 실전 이해</h3>
-            <p>Controller, Service, DAO 역할을 코드로 분석</p>
-            <span>2026.03.16</span>
+            <div class="post">
+                <h3>MVC 패턴 이해</h3>
+                <p>실전 코드 기반 설명</p>
+                <span>2026.03.16</span>
+            </div>
+
+            <div class="post">
+                <h3>JDBC Connection 관리</h3>
+                <p>커넥션 누수 방지</p>
+                <span>2026.03.15</span>
+            </div>
+
+            <div class="post">
+                <h3>MySQL 인덱스</h3>
+                <p>성능 개선 사례</p>
+                <span>2026.03.14</span>
+            </div>
+
+            <div class="post">
+                <h3>트랜잭션 처리</h3>
+                <p>commit & rollback</p>
+                <span>2026.03.13</span>
+            </div>
+
+            <div class="post">
+                <h3>Connection Pool</h3>
+                <p>왜 필요한가</p>
+                <span>2026.03.12</span>
+            </div>
+
+            <div class="pagination">
+                <div class="page-btn">1</div>
+                <div class="page-btn active">2</div>
+                <div class="page-btn">3</div>
+            </div>
+
         </div>
-
-        <div class="post">
-            <h3>MySQL 인덱스 최적화 경험</h3>
-            <p>조회 성능을 개선한 실제 사례</p>
-            <span>2026.03.15</span>
-        </div>
-
-        <div class="post">
-            <h3>트랜잭션 처리 제대로 이해하기</h3>
-            <p>commit, rollback 동작 원리 정리</p>
-            <span>2026.03.14</span>
-        </div>
-
-        <div class="post">
-            <h3>JDBC vs JPA 차이</h3>
-            <p>왜 실무에서 JPA를 사용하는가</p>
-            <span>2026.03.13</span>
-        </div>
-
-        <div class="post">
-            <h3>Connection Pool이 필요한 이유</h3>
-            <p>성능과 안정성 관점에서 분석</p>
-            <span>2026.03.12</span>
-        </div>
-
-        <div class="pagination">
-            <div class="page-btn">1</div>
-            <div class="page-btn active">2</div>
-            <div class="page-btn">3</div>
-            <div class="page-btn">4</div>
-        </div>
-
     </div>
-</div>
 
 </div>
 
